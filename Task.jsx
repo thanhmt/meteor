@@ -10,9 +10,16 @@ Task = React.createClass({
 		});
 	},
 	
+	updateTaskContent(){
+		Tasks.update(this.props.task._id, {
+			$set: {text: this.props.task.text}		
+		});
+	},
+	
 	deleteTask(){
 		Tasks.remove(this.props.task._id);
 	},
+	
 	render(){	
 	const taskClassName = this.props.task.checked ? "checked" :"";
 		return (
@@ -24,9 +31,13 @@ Task = React.createClass({
 			type="checkbox" 
 			readOnly={true} 
 			checked={this.props.task.checked}
-			onClick={this.toggleChecked} />
-			
-			<span className="text">{this.props.task.text}</span>
+			onClick={this.toggleChecked} />			
+			<span 
+			className="text" 
+			contentEditable={true} 
+			onBlur={this.updateTaskContent}>
+				{this.props.task.text}
+			</span>
 		</li>
 		);
 	}
