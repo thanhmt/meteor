@@ -23,13 +23,14 @@ renderTasks(){
     ]
   },
   //Handle submit
-  handleSubmit(){
+  handleSubmit(event){
   event.preventDefault();
   var text = React.findDOMNode(this.refs.textInput).value.trim();
   
   Tasks.insert({
     text: text,
-    createdAt: new Date()
+    createdAt: new Date(),
+    checked: false
   });
   
     React.findDOMNode(this.refs.textInput).value = "";
@@ -47,12 +48,14 @@ renderTasks(){
       <div className="container">
         <header>
           <h1>Todo list</h1>
-        </header>
-        <form className="new-task" onSubmit={this.handleSubmit}>
+           <form className="new-task" onSubmit={this.handleSubmit}>
           <input type="text" ref="textInput" placeholder="Input new task"/>
         </form>
+        </header>       
+        <ul>
+           {this.renderTasks()}
+        </ul>
       </div>
-      
     );
   }
 });

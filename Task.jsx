@@ -5,13 +5,13 @@ Task = React.createClass({
 	},
 	
 	toggleChecked(){
-		Tasks.update(this.props.task.id, {
+		Tasks.update(this.props.task._id, {
 			$set: {checked: ! this.props.task.checked}		
 		});
 	},
 	
 	deleteTask(){
-		Tasks.remove(this.props.task.id);
+		Tasks.remove(this.props.task._id);
 	},
 	render(){	
 	const taskClassName = this.props.task.checked ? "checked" :"";
@@ -24,7 +24,7 @@ Task = React.createClass({
 			type="checkbox" 
 			readOnly={true} 
 			checked={this.props.task.checked}
-			onClick={this.toggleChecked}/>
+			onClick={this.toggleChecked} />
 			
 			<span className="text">{this.props.task.text}</span>
 		</li>
