@@ -104,6 +104,8 @@ li {
 li .text {
   margin-left: 10px;
   white-space: nowrap;
+  border: none;
+  background: transparent;
 }
 
 li.checked {
