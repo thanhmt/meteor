@@ -1,30 +1,24 @@
+var source="http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US";
 BingWall = React.createClass({
-  getInitialState: function() {
-    return {
-      username: '',
-      lastGistUrl: ''
-    };
-  },
-
   componentDidMount: function() {
-    console.log(this.props.source);
-    $.get(this.props.source, function(result) {
-      console.log(this.props.source, result);    
-      var lastGist = result[0].images[0].url;
-      if (this.isMounted()) {
-        this.setState({
-          username: lastGist.owner.login,
-          lastGistUrl: lastGist
-        });
-      }
-    }.bind(this));
-  },
+     $.ajax({
+        url: source,
+        type: "GET",
+        dataType: 'json',
+        success: function(data) {
+          this.setState({data: data});
+          console.log(this.state.data);
+        }.bind(this)
+      });
 
+  },
+  getInitialState: function() {
+    return {data: {}};
+  },
   render: function() {
     return (
       <div>
-        {this.state.username}'s last gist is
-        <a href={this.state.lastGistUrl}>here</a>.
+      <img src={false}/>
       </div>
     );
   }

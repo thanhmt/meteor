@@ -131,6 +131,10 @@ header .hide-completed {
   margin-left: 5px;
 }
 
+.invalid{
+  border: solid 1px #ff0000;
+}
+
 @media (max-width: 600px) {
   li {
     padding: 12px 15px;
